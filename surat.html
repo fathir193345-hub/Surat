@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surat Buat Kamu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#fff7fa;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    width:340px;
+    background:#ffeef5;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    position:relative;
+}
+
+h1{
+    color:#d86f92;
+    margin-bottom:10px;
+}
+
+p{
+    color:#666;
+    margin-bottom:15px;
+}
+
+.surat{
+    font-size:90px;
+}
+
+button{
+    border:none;
+    border-radius:10px;
+    padding:10px 20px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.2s;
+}
+
+#openBtn{
+    background:#f3a5bf;
+    color:white;
+}
+
+#question{
+    display:none;
+    margin-top:20px;
+}
+
+.btn-group{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:15px;
+}
+
+#yes{
+    background:#a9ddb0;
+}
+
+#no{
+    background:#ff9999;
+}
+
+#result{
+    display:none;
+    margin-top:20px;
+    font-size:24px;
+    color:#d64b74;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h1>Ada Surat Nih Buat Kamu 💌</h1>
+
+<p>Klik surat di bawah ini ya.</p>
+
+<div class="surat">✉️</div>
+
+<br>
+
+<button id="openBtn">Klik Surat</button>
+
+<div id="question">
+    <h3>Apakah kamu seorang monyet? 🐵</h3>
+
+    <div class="btn-group">
+        <button id="yes">Iya</button>
+        <button id="no">Tidak</button>
+    </div>
+</div>
+
+<div id="result">
+    Halo monyet 🐵
+</div>
+
+</div>
+
+<script>
+const openBtn=document.getElementById("openBtn");
+const question=document.getElementById("question");
+const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const result=document.getElementById("result");
+
+let kabur=false;
+
+openBtn.onclick=()=>{
+    openBtn.style.display="none";
+    question.style.display="block";
+};
+
+function pindah(){
+
+    if(!kabur){
+        kabur=true;
+        no.style.position="fixed";
+    }
+
+    let x=Math.random()*(window.innerWidth-100);
+    let y=Math.random()*(window.innerHeight-60);
+
+    no.style.left=x+"px";
+    no.style.top=y+"px";
+}
+
+no.addEventListener("mouseover",pindah);
+
+no.addEventListener("touchstart",function(e){
+    e.preventDefault();
+    pindah();
+});
+
+yes.onclick=()=>{
+    question.style.display="none";
+    result.style.display="block";
+};
+</script>
+
+</body>
+</html>
